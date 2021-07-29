@@ -18,6 +18,8 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
   # 与フォロー関係を通じて参照→自分がフォローしている人
   has_many :followings, through: :relationships, source: :followed
+  
+  has_many :book_comments, dependent: :destroy
 
   def follow(user_id)
     relationships.create(followed_id: user_id)
